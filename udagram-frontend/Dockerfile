@@ -10,6 +10,8 @@ COPY . .
 
 EXPOSE 8083
 
+RUN npm install -g @ionic/cli
+
 RUN ionic build
 
 CMD ["ionic","serve"]
