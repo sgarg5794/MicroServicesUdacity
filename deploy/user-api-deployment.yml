@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: users-api-dpl
+  labels:
+    app: users-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: users-api
+  template:
+    metadata:
+      labels:
+        app: users-api
+    spec:
+      containers:
+      - name: users-api
+        image: sahilgarg5794/users-api-udacity
+        ports:
+        - containerPort: 8081
+        env:
+        - name: AWS_PROFILE
+          valueFrom:
+            configMapKeyRef:
+              name: api-map
+              key: AWS_PROFILE
+        - name: AWS_REGION
+          valueFrom: 
+            configMapKeyRef:
+              name: api-map
+              key: AWS_REGION
+        - name: POSTGRES_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: mysecret
+              key: POSTGRES_USERNAME
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysecret
+              key: POSTGRES_PASSWORD
+        - name: POSTGRES_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: mysecret
+              key: POSTGRES_DATABASE
+        - name: POSTGRES_HOST
+          valueFrom:
+            secretKeyRef:
+              name: mysecret
+              key: POSTGRES_HOST
+        - name: AWS_BUCKET
+          valueFrom:
+            secretKeyRef:
+              name: mysecret
+              key: AWS_BUCKET
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: mysecret
+              key: JWT_SECRET
