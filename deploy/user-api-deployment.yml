@@ -60,3 +60,8 @@ spec:
             secretKeyRef:
               name: mysecret
               key: JWT_SECRET
+        - name: URL
+          valueFrom:
+            configMapKeyRef:
+              name: api-map
+              key: URL

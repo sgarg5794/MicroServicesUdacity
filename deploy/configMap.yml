@@ -6,3 +6,4 @@ data:
   # property-like keys; each key maps to a simple value
   AWS_REGION: us-east-2
   AWS_PROFILE: default
+  URL: http://a8b5093a8b9044f99a1c29e75945655b-20613613.us-east-2.elb.amazonaws.com:80
